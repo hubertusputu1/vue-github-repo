@@ -1,5 +1,7 @@
 # github-repos
 
+This project will fetch the repository of github using github api. 
+
 ## Project setup
 ```
 yarn install
@@ -13,4 +15,4 @@ yarn run serve
 ### Compiles and minifies for production
 ```
 yarn run build
-```'
+```
