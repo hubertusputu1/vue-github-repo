@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import showdown from 'showdown';
+
+const converter = new showdown.Converter();
 
 Vue.use(Vuex);
 
@@ -93,7 +96,12 @@ export default new Vuex.Store({
 				`https://api.github.com/repos/${username}/${repo}/readme`
 			)
 				.then(response => {
-					commit('setSelectedRepo', atob(response.data.content));
+					commit(
+						'setSelectedRepo',
+						converter.makeHtml(
+							atob(response.data.content)
+						)
+					);
 					commit('setStatus', 'succeed');
 				})
 				.catch(error => {
